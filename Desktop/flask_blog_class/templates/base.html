@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}- FlaskBlog</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f9f9f9; color: #333; }
+        nav a { margin-right: 20px; text-decoration: none; color: #007BFF; font-weight: bold; }
+        .content { background: white; padding: 20px; border-radius: 5px; margin-top: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .post { border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
+        .alert { padding: 10px; background: #ffcccc; color: #900; margin-bottom: 15px; border-radius: 3px; }
+        input[type="text"], textarea { width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 15px; box-sizing: border-box; }
+        button, .btn { background: #007BFF; color: white; padding: 8px 15px; border: none; border-radius: 3px; cursor: pointer; text-decoration: none; }
+        button:hover, .btn:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">FlaskBlog</a>
+        <a href="{{ url_for('create') }}">New Post</a>
+    </nav>
+    <div class="content">
+        {% for message in get_flashed_messages() %}
+            <div class="alert">{{ message }}</div>
+        {% endfor %}
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>
